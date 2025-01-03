@@ -4,7 +4,7 @@
     <v-row class="hero-section">
       <v-col cols="12">
         <v-img
-          src="/assets/fixed/cyberpunk_car_main.webp"
+          src="/assets/images/fixed/cyberpunk_car_main.webp"
           height="500"
           class="rounded-xl"
         >
@@ -28,7 +28,7 @@
         >
           <v-card class="mx-2" max-width="150">
             <v-img
-              src="/assets/fixed/cyberTruck_test.jpeg"
+              src="/assets/images/fixed/cyberTruck_test.jpeg"
               height="100"
             ></v-img>
             <v-card-title class="text-h6">사이버 트럭</v-card-title>
@@ -69,10 +69,6 @@ const currentSlide = ref(0);
   min-height: 100vh;
 }
 
-/* Hero 섹션 상단 여백 추가 */
-.hero-section {
-  margin-top: 20px; /* 원하는 만큼 여백 설정 */
-}
 
 /* 슬라이드 그룹 스타일 */
 .custom-slide-group {
