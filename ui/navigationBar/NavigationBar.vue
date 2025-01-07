@@ -1,8 +1,8 @@
 <template>
-    <v-app-bar app color="deep-purple-accent-4" dark>
+    <v-app-bar app color="black" dark class="custom-app-bar">
         <!-- 로고 및 홈으로 이동 버튼 -->
-        <v-btn @click="goToHome" text>
-            <v-toolbar-title class="text-h6 font-weight-bold">GO!Car</v-toolbar-title>
+        <v-btn @click="goToHome" text class="logo-button">
+            <img src="/assets/images/fixed/home_button.webp" alt="GO!Car Logo" class="logo-image" />
         </v-btn>
         <v-spacer></v-spacer>
 
@@ -75,5 +75,27 @@ onMounted(async () => {
 .v-btn {
   display: flex;
   align-items: center;
+  background-color: transparent !important; /* 버튼 배경색 제거 */
+  box-shadow: none; /* 버튼 그림자 제거 */
+}
+
+/* 로고 이미지 스타일 */
+.logo-image {
+  height: 50px; /* 로고 크기 조정 */
+  width: 50px; /* 크기를 고정 */
+  cursor: pointer;
+  border-radius: 50%; /* 이미지를 둥글게 표시 */
+  object-fit: cover; /* 이미지 비율 유지 */
+}
+
+/* 로고 버튼 */
+.logo-button {
+  padding: 0; /* 여백 제거 */
+}
+
+/* 네비게이션 바 스타일 */
+.custom-app-bar {
+  background-color: black !important; /* 배경색 블랙 */
+  border-bottom: 4px solid white; /* 아래 흰색 라인 추가 */
 }
 </style>
