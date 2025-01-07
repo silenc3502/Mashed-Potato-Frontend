@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app>
+    <v-app class="app-background">
       <NavigationBar/>
       <v-main>
         <NuxtPage/>
@@ -13,4 +13,7 @@
 </script>
 
 <style scoped>
+.app-background {
+  background-color: black;
+}
 </style>
