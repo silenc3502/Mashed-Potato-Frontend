@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid class="pa-0 custom-background">
+  <v-container fluid class="pa-0 custom-background" >
     <!-- 배경 이미지와 텍스트를 포함한 Hero 섹션 -->
-    <v-row class="hero-section">
+    <v-row class="hero-section" style="margin-top: 50px;">
       <v-col cols="12">
         <v-img
           src="/assets/images/fixed/cyberpunk_car_main.webp"
