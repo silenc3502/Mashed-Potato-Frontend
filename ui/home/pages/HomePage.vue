@@ -94,3 +94,44 @@ const currentSlide = ref(0);
   color: white;
 }
 </style>
+
+<style scoped>
+/* 배경색 블랙 설정 및 텍스트 흰색 */
+/* 배경색 블랙 설정 및 텍스트 흰색 */
+.custom-background {
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+}
+
+/* 슬라이드 그룹 스타일 */
+.custom-slide-group {
+  max-width: 1400px; /* 한 번에 7개의 카드가 보이도록 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* 카드 기본 스타일 */
+.v-card {
+  background-color: #222;
+  color: white;
+  transition: all 0.3s ease; 
+  border: 1px solid transparent; 
+}
+
+/* 마우스 오버 시 네온사인 효과 */
+.v-card:hover {
+  background-color: #776175; 
+  box-shadow: 0 0 15px rgb(239, 81, 213), 0 0 30px rgb(239, 81, 213);
+  border-color:  rgb(239, 81, 213); 
+}
+
+.v-card-title,
+.v-card-subtitle {
+  color: white;
+}
+
+/* 버튼 텍스트 흰색 */
+.v-btn {
+  color: white;
+}
+</style>
