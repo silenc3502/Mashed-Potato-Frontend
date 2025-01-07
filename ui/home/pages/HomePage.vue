@@ -64,9 +64,11 @@ const currentSlide = ref(0);
 <style scoped>
 /* 배경색 블랙 설정 및 텍스트 흰색 */
 .custom-background {
+
   background-color: black;
   color: white;
   min-height: 100vh;
+
 }
 
 

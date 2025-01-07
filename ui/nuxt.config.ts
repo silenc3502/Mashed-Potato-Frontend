@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: [
     './home/nuxt.config.ts',
+    './account/nuxt.config.ts',
     './kakaoAuthentication/nuxt.config.ts',
     
   ],
@@ -34,6 +35,7 @@ export default defineNuxtConfig({
     'vuetify-nuxt-module',
     '@pinia/nuxt',
     '~/home/index.ts',
+    '~/account/index.ts',
     '~/kakaoAuthentication/index.ts',
   ],
 
