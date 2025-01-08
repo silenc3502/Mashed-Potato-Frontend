@@ -9,16 +9,22 @@
         차량 모델 등록
       </NuxtLink>
     </div>
-    
   </v-container>
 </template>
 
 <script setup lang="ts">
 
 import { ref, computed, onMounted, watch } from 'vue'
-
+import { useCarStore } from '../../stores/carStore'
 import { useRouter } from 'vue-router'
 import {resolve} from "path";
+
+const carStore = useCarStore()
+const carList = computed(() => carStore.carList);
+
+const totalPages = computed(() => carStore.totalPages);
+const currentPage = ref(1)
+const perPage = 8
 
 // 라우터 설정
 const router = useRouter()
