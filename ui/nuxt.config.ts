@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     './home/nuxt.config.ts',
     './account/nuxt.config.ts',
     './kakaoAuthentication/nuxt.config.ts',
+    './car/nuxt.config.ts',
     
   ],
 
@@ -37,6 +38,7 @@ export default defineNuxtConfig({
     '~/home/index.ts',
     '~/account/index.ts',
     '~/kakaoAuthentication/index.ts',
+    '~/car/index.ts',
   ],
 
   imports: {
