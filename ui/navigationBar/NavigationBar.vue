@@ -12,17 +12,21 @@
             close-on-content-click
             open-on-hover
             offset-y
-        >
+
+        >   <!-- 모델 버튼 -->
             <template v-slot:activator="{ props }">
                 <v-btn
                     color="white"
                     v-bind="props"
                     class="menu-activator"
+                    @click="navigateToAllCar"
                 >
                     <v-icon left>mdi-car</v-icon>
                     <b>모델</b>
                 </v-btn>
             </template>
+
+            <!-- 드롭다운 리스트 -->
             <v-list>
                 <v-list-item @click="filterVehicles('승용차 및 SUV')">
                     <v-list-item-title>승용차 및 SUV</v-list-item-title>
@@ -78,12 +82,12 @@ const goToHome = () => {
 };
 
 // 전체 차종 페이지 이동
-const navigateToAllVehicles = () => {
-    router.push('/all-vehicles');
+const navigateToAllCar = () => {
+    router.push('/car/list');
 };
 
 // 카테고리별 필터링
-const filterVehicles = (category) => {
+const filterCar = (category) => {
     console.log(`${category} 카테고리 선택됨`);
 };
 
