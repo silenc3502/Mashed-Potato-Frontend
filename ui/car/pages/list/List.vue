@@ -1,6 +1,15 @@
 <template>
   <v-container>
     <h2>판매 차량 모델</h2>
+      <!-- 상품 등록 링크 -->
+    <div style="text-align: left; margin: 15px;">
+     <!-- name을 가지고 Nuxt 상의 라우터를 연결함
+          즉 링크를 누르면 register 페이지가 구동됨(URL 이동) -->
+     <NuxtLink :to="{ name: 'CarRegisterPage' }" class="register-link">
+        차량 모델 등록
+      </NuxtLink>
+    </div>
+    
   </v-container>
 </template>
 
@@ -25,5 +34,10 @@ h2 {
   color: white;
   text-align: center;
   margin-top: 20px;
+}
+
+/* NuxtLink 스타일 */
+.register-link {
+  color: white;
 }
 </style>
