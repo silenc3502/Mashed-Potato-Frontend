@@ -23,6 +23,12 @@ export default defineNuxtModule({
                 path: '/car/register',
                 file: resolve(themeDir, 'car/pages/register/Register.vue'),
             });
+
+            pages.push({
+                name: 'CarRead',
+                path: '/car/read/:id',
+                file: resolve(themeDir, 'car/pages/read/Read.vue'),
+            });
         });
 
         nuxt.hook('imports:dirs', (dirs) => {

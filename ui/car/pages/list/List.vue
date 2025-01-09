@@ -88,12 +88,20 @@ const getCarImageUrl = (imageName: string) => {
     const imagePathKey = `/assets/images/uploadImages/${imageName}`
     console.log(`imagePathKey: ${imagePathKey}`)
     const imagePath = images[imagePathKey];
-    console.log(`imagePath: ${imagePath.default}`)
+    //console.log(`imagePath: ${imagePath.default}`)
 
     if (imagePath) {
         return imagePath.default;
     }
     return '/assets/images/default-image.jpg';
+}
+
+// 상품 상세 페이지로 이동하는 함수
+const goToCarReadPage = (id: string) => {
+  router.push({
+    name: 'CarRead',
+    params: { id },
+  })
 }
 
 // 컴포넌트 마운트 시 상품 목록 요청

@@ -8,6 +8,12 @@
 
     <v-row>
       <v-col cols="12">
+        <v-text-field v-model="carCategory" label="분류종" />
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12">
         <v-text-field v-model="carPrice" label="가격" type="number" />
       </v-col>
     </v-row>
@@ -52,6 +58,7 @@ const router = useRouter()
 const carStore = useCarStore()
 
 const carTitle = ref('')
+const carCategory = ref('')
 const carPrice = ref(0)
 const carDescription = ref('')
 const carImage = ref(null)
@@ -64,6 +71,7 @@ const onSubmit = async () => {
     if (carImage.value) {
       const formData = new FormData()
       formData.append('carTitle', carTitle.value)
+      formData.append('carCategory', carCategory.value)
       formData.append('carPrice', carPrice.value.toString())
       formData.append('carDescription', carDescription.value)
       formData.append('carImage', carImage.value)

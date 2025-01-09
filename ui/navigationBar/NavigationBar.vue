@@ -39,18 +39,7 @@
                 </v-list-item>
             </v-list>
         </v-menu>
-
-        <!-- 리뷰게시판 버튼 -->
-        <v-btn text @click="goToBoardList" class="btn-text">
-            <v-icon left>mdi-notebook-multiple</v-icon>
-            <span>리뷰 게시판</span>
-        </v-btn>
-        <!-- 카트 버튼 -->
-        <v-btn text @click="goToCart" class="btn-text">
-            <v-icon left>mdi-cart-outline</v-icon>
-            <span>카트</span>
-        </v-btn>
-
+       
         <!-- 로그인/로그아웃 버튼 -->
         <template v-if="!kakaoAuthentication.isAuthenticated">
             <v-btn text @click="signIn" class="btn-text">
