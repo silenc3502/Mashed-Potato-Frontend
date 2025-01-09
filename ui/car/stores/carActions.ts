@@ -14,7 +14,7 @@ export const carAction = {
             this.totalPages = res.data.totalPages
             this.currentPage = page
         } catch (error) {
-            console.log('requestCarList() 중 에러:', error)
+            console.log('requestCarList() 중 에러1:', error)
         }
     },
     async requestCreateCar(imageFormData: FormData): Promise<void> {
@@ -31,7 +31,7 @@ export const carAction = {
             )
             console.log('Response Data:', res.data)
         } catch (error) {
-            console.log('requestCreateCar() 중 에러:', error)
+            console.log('requestCreateCar() 중 에러2:', error)
         }
     },
     async requestCarById(id: string): Promise<any> {

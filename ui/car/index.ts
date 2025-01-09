@@ -17,10 +17,15 @@ export default defineNuxtModule({
                 path: '/car/list', // URL 경로
                 file: resolve(themeDir, 'car/pages/list/List.vue'), // 페이지 파일 경로
             });
+        
+            pages.push({
+                name: 'CarRegister',
+                path: '/car/register',
+                file: resolve(themeDir, 'car/pages/register/Register.vue'),
+            });
         });
 
         nuxt.hook('imports:dirs', (dirs) => {
-            // Store 디렉토리 추가
             dirs.push(resolve(__dirname, 'store'));
         });
     },
