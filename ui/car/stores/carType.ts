@@ -9,6 +9,7 @@ export interface CarState {
   export interface Car {
     id: number
     title: string
+    category: string
     price: string
     description: string
     image: string
