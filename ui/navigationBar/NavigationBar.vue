@@ -45,7 +45,7 @@
             <v-icon left>mdi-notebook-multiple</v-icon>
             <span>리뷰 게시판</span>
         </v-btn>
-        
+
         <!-- 카트 버튼 -->
         <v-btn text @click="goToCart" class="btn-text">
             <v-icon left>mdi-cart-outline</v-icon>
@@ -80,6 +80,10 @@ const kakaoAuthentication = useKakaoAuthenticationStore();
 
 const goToHome = () => {
     router.push('/');
+};
+
+const goToBoardList = () => {
+    router.push('/board/list'); // 카트 페이지로 이동
 };
 
 const goToCart = () => {
