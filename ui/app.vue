@@ -19,6 +19,7 @@ const neonCursor = ref(null);
 
 // 마우스 위치 추적
 const handleMouseMove = (event) => {
+  
   mouseX.value = event.clientX;
   mouseY.value = event.clientY;
 
@@ -31,7 +32,7 @@ const handleMouseMove = (event) => {
 // 커서 숨기기 및 초기화
 onMounted(() => {
   document.body.appendChild(neonCursor.value);
-  document.body.style.cursor = 'none';  // 기본 커서 숨기기
+  // document.body.style.cursor = 'none';  // 기본 커서 숨기기
 });
 </script>
 
