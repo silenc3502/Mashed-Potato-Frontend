@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     './account/nuxt.config.ts',
     './kakaoAuthentication/nuxt.config.ts',
     './car/nuxt.config.ts',
-    
+    './cart/nuxt.config.ts',
+
   ],
 
   css: [
@@ -39,6 +40,7 @@ export default defineNuxtConfig({
     '~/account/index.ts',
     '~/kakaoAuthentication/index.ts',
     '~/car/index.ts',
+    '~/cart/index.ts',
   ],
 
   imports: {

@@ -82,6 +82,10 @@ const goToHome = () => {
     router.push('/');
 };
 
+const goToCart = () => {
+    router.push('/cart/list'); // 카트 페이지로 이동
+};
+
 // 전체 차종 페이지 이동
 const navigateToAllCar = () => {
     router.push('/car/list');
