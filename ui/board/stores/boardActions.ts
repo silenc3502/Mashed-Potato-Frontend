@@ -30,7 +30,28 @@ export const boardAction = {
             this.currentPage = 1;                   // 실패 시 페이지는 1로 초기화
         }
     },
+    async requestCreateBoard(payload) {
+        const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
     
+        const { carModel, rating, userToken } = payload;
+    
+        try {
+            const res = await djangoAxiosInstance.post(`/board/create`, {
+                carModel, rating, userToken
+            });
+    
+            console.log("Create Board Response Data:", res.data);
+    
+            if (res.data) {
+                console.log("Board created successfully.");
+                // 필요한 추가 동작 (예: 새로고침, 알림)
+            } else {
+                console.error("Failed to create board:", res.data.message || "Unknown error");
+            }
+        } catch (error) {
+            console.error("requestCreateBoard() 중 에러:", error);
+        }
+    }
     
     
 }

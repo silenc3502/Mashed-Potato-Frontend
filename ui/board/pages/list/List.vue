@@ -108,7 +108,9 @@ const goToDetail = (event, { item }) => {
     }
 };
 
-
+const goToCreateBoard = () => {
+    router.push({ path: '/board/register' }); // 게시글 작성 페이지로 이동
+};
 
 const formatDate = (dateString) => {
     const options = { year: "numeric", month: "2-digit", day: "2-digit" };
