@@ -52,13 +52,24 @@ export const boardAction = {
             console.error("requestCreateBoard() 중 에러:", error);
         }
     },
+    async requestReadBoard(boardId) {
+        try {
+            const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
+            const res = await djangoAxiosInstance.get(`/board/read/${boardId}`);
+            console.log(`res: ${JSON.stringify(res)}`)
+            this.board = res.data;
+        } catch (error) {
+            console.error("게시글 정보를 가져오는 데 실패했습니다:", error);
+            this.board = null;
+        }
+    },
     async requestModifyBoard(boardId, boardDetails) {
         try {
             const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
             const response = await djangoAxiosInstance.put(`/board/modify/${boardId}`, {
-                title: boardDetails.title,
-                content: boardDetails.content,
-                userToken: boardDetails.userToken,  // userToken 포함
+                carModel: boardDetails.carModel,  // 구매한 차 상품
+                rating: boardDetails.rating,      // 평점
+                userToken: boardDetails.userToken, // userToken 포함
             });
 
             console.log("게시글 수정 성공:", response.data);

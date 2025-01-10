@@ -82,9 +82,9 @@ const fetchBoardDetails = async () => {
             // 응답 데이터에서 필요한 필드를 boardDetails에 매핑
             boardDetails.value = {
                 carModel: boardStore.board.carModel,
+                rating: boardStore.board.rating,
                 writer: { nickname: boardStore.board.nickname },
                 createDate: boardStore.board.createDate,
-                rating: boardStore.board.rating
             };
         } else {
             console.error("게시글 정보를 가져오는 데 실패했습니다.");
