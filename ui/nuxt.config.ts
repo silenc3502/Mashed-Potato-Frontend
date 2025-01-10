@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     './car/nuxt.config.ts',
     './cart/nuxt.config.ts',
     './board/nuxt.config.ts',
+    './payments/nuxt.config.ts',
+    './order/nuxt.config.ts',
   ],
 
   css: [
@@ -42,6 +44,8 @@ export default defineNuxtConfig({
     '~/car/index.ts',
     '~/cart/index.ts',
     '~/board/index.ts',
+    '~/payments/index.ts',
+    '~/order/index.ts',
   ],
 
   imports: {
