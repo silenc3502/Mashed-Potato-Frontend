@@ -55,6 +55,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       MAIN_API_URL: process.env.VUE_APP_BASE_URL,
+      TOSS_CLIENT_KEY : process.env.TOSS_CLIENT_KEY,
+      TOSS_SECRET_KEY : process.env.TOSS_SECRET_KEY,
     }
   },
 })

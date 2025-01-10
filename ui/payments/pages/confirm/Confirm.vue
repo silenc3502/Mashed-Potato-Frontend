@@ -78,7 +78,6 @@ const paymentMethodWidget = ref(null);
 const clientKey = ref(config.public.TOSS_CLIENT_KEY);
 const inputEnabled = ref(false);
 const amount = ref(0);
-const discountCouponAmount = ref(5);
 const items = ref([]);
 
 // 라우터 및 쿼리
@@ -128,13 +127,15 @@ onMounted(async () => {
 const requestPayment = async () => {
   isProcessing.value = true; // 결제 진행 상태로 변경
   errorMessage.value = null; // 오류 메시지 초기화
-
   try {
+
     const customerEmail = await accountStore.requestEmail(userToken.value); // 고객 이메일
 
     const orderInfoId = route.query.orderId
     localStorage.setItem("oid", orderInfoId)
+    console.log('paymentWidget.value', paymentWidget.value)
 
+    console.log("oid", orderInfoId)
     if (paymentWidget.value) {
       await paymentWidget.value.requestPayment({
         orderId: nanoid(),

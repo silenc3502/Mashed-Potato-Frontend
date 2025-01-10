@@ -62,7 +62,6 @@ const paymentMethodWidget = ref(null);
 const clientKey = ref(config.public.TOSS_CLIENT_KEY);
 const inputEnabled = ref(false);
 const amount = ref(0);
-const discountCouponAmount = ref(5);
 const items = ref([]);
 
 // 라우터 및 쿼리
@@ -96,6 +95,7 @@ onMounted(async () => {
   }
 
   // 결제 위젯 초기화
+  console.log('clientKey.value', clientKey.value)
   paymentWidget.value = await loadPaymentWidget(clientKey.value, ANONYMOUS);
   paymentMethodWidget.value = paymentWidget.value.renderPaymentMethods("#payment-method", { value: amount.value }, { variantKey: "DEFAULT" });
   paymentWidget.value.renderAgreement("#agreement", { variantKey: "AGREEMENT" });
@@ -111,7 +111,6 @@ const requestPayment = async () => {
   try {
     // const customerName = await accountProfileStore.requestNickname(userToken.value); // 고객 이름
     const customerEmail = await accountStore.requestEmail(userToken.value); // 고객 이메일
-
     if (paymentWidget.value) {
       await paymentWidget.value.requestPayment({
         orderId: nanoid(),
