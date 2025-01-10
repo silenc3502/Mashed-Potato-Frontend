@@ -7,10 +7,11 @@ export interface BoardState {
   }
   
   export interface Board {
-    id: number
-    title: string
-    price: string
-    description: string
-    image: string
-  }
+    id: number;
+    carModel: string;
+    rating: number; // 평점 추가
+    writer: string;
+    createDate: string;
+}
+
     

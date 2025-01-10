@@ -60,7 +60,8 @@ const boardList = computed(() => {
     return boardStore.boardList.map(board => ({
         boardId: board.boardId,
         carModel: board.carModel, // 구매한 차 상품
-        rating: board.rating,     // 평점
+        rating: board.rating,   
+        nickname: board.nickname,   // 평점
         createDate: board.createDate
     }));
 });
@@ -82,6 +83,7 @@ const headerTitle = [
     { title: 'No', align: 'start', sortable: true, key: 'boardId' },
     { title: '구매한 차 상품', align: 'end', key: 'carModel' },
     { title: '평점 (1-5)', align: 'end', key: 'rating' },
+    { title: '작성자', align: 'end', key: 'nickname' },
     { title: '작성일자', align: 'end', key: 'createDate' },
 ];
 
