@@ -51,7 +51,23 @@ export const boardAction = {
         } catch (error) {
             console.error("requestCreateBoard() 중 에러:", error);
         }
-    }
-    
+    },
+    async requestModifyBoard(boardId, boardDetails) {
+        try {
+            const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
+            const response = await djangoAxiosInstance.put(`/board/modify/${boardId}`, {
+                title: boardDetails.title,
+                content: boardDetails.content,
+                userToken: boardDetails.userToken,  // userToken 포함
+            });
+
+            console.log("게시글 수정 성공:", response.data);
+            this.board = response.data; // 수정된 게시글을 스토어에 반영
+        } catch (error) {
+            console.error('게시글 수정 요청 중 에러 발생:', error);
+            throw error; // 에러를 다시 던져서 상위 컴포넌트에서 처리하도록 함
+        }
+    },
+
     
 }

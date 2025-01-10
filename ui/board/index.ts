@@ -23,6 +23,12 @@ export default defineNuxtModule({
                 file: resolve(themeDir, 'board/pages/register/Register.vue'),
             });    
 
+            pages.push({
+                name: 'BoardModify',
+                path: '/board/modify/:boardId',
+                file: resolve(themeDir, 'board/pages/modify/Modify.vue'),
+            });
+
         });
 
         nuxt.hook('imports:dirs', (dirs) => {
