@@ -79,6 +79,17 @@ export const boardAction = {
             throw error; // 에러를 다시 던져서 상위 컴포넌트에서 처리하도록 함
         }
     },
-
+    async requestDeleteBoard(boardId, userToken) {
+        try {
+            const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
+            const response = await djangoAxiosInstance.delete(`/board/delete/${boardId}`, {
+                data: { userToken }
+            });
+            console.log("게시글 삭제 성공:", response.data);
+        } catch (error) {
+            console.error("게시글 삭제 요청 중 에러 발생:", error);
+            throw error; // 에러를 다시 던져서 상위 컴포넌트에서 처리하도록 함
+        }
+    },
     
 }
