@@ -146,10 +146,10 @@ const proceedToOrder = async () => {
     return;
   }
 
-  router.push({
-    path: '/payments/confirm',
-    query: { items: encodeURIComponent(JSON.stringify(selectedCartItems)) },
-  });
+  // router.push({
+  //   path: '/payments/confirm',
+  //   query: { items: encodeURIComponent(JSON.stringify(selectedCartItems)) },
+  // });
 
   try {
     const response = await orderStore.requestCreateOrder({
@@ -160,10 +160,10 @@ const proceedToOrder = async () => {
 
     if (response.success) {
       // 주문 생성 성공: 결제 페이지로 이동
-      router.push({
-        path: "/payments/confirm",
-        query: { orderId: response.orderId },
-      });
+      // router.push({
+      //   path: "/payments/confirm",
+      //   query: { orderId: response.orderId },
+      // });
       router.push({
         path: '/payments/confirm',
         query: {
