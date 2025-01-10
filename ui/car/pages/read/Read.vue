@@ -74,7 +74,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-//import { useCartStore } from '~/cart/stores/cartStore';
+import { useCartStore } from '~/cart/stores/cartStore';
 import { useCarStore } from '../../stores/carStore';
 
 interface ImageModule {
@@ -82,7 +82,7 @@ interface ImageModule {
 }
 
 const carStore = useCarStore();
-//const cartStore = useCartStore()
+const cartStore = useCartStore()
 
 const route = useRoute();
 const carId = route.params.id
@@ -107,7 +107,7 @@ const getCarImageUrl = (imageName: string) => {
 };
 
 const router = useRouter()
-/*
+
 const onAddToCart = async () => {
   if (car.value) {
     const userToken = localStorage.getItem("userToken") || "";
@@ -128,7 +128,7 @@ const onAddToCart = async () => {
     }
   }
 }
-*/
+
 onMounted(async () => {
   const { id } = route.params;
 

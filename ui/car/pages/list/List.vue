@@ -23,7 +23,7 @@
                     </template>
                 </v-img>
             <v-card-title>{{ car.title }}</v-card-title>
-             <v-card-subtitle>{{ car.price }}</v-card-subtitle>
+             <v-card-subtitle>{{ car.price + '원'}}</v-card-subtitle>
             </v-card>
         </v-col>
     </v-row>
@@ -103,6 +103,11 @@ const goToCarReadPage = (id: string) => {
     params: { id },
   })
 }
+
+watch (currentPage, (newPage) => {
+  carStore.requestCarList(newPage, perPage)
+})
+
 
 // 컴포넌트 마운트 시 상품 목록 요청
 onMounted(() => {
