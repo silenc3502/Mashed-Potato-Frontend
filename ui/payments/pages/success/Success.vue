@@ -1,39 +1,39 @@
 <template>
-  <v-container class="mt-10">
+  <v-container class="dark-background pa-4">
     <!-- 로딩 중일 때 표시 -->
     <v-row v-if="isProcessing" justify="center" align="center">
       <v-col cols="12" class="text-center">
         <v-progress-circular indeterminate color="primary" size="64" />
-        <div>결제 확인 중...</div>
+        <div class="neon-text">결제 확인 중...</div>
       </v-col>
     </v-row>
 
     <!-- 결제 완료 후 데이터 표시 -->
-    <v-card v-else class="mx-auto" max-width="600">
-      <v-card-title>결제 완료</v-card-title>
+    <v-card v-else class="neon-card mx-auto" max-width="600">
+      <v-card-title class="neon-card-title">결제 완료</v-card-title>
       <v-card-text>
         <v-row>
-          <v-col cols="6"><b>결제금액:</b></v-col>
-          <v-col cols="6" class="text-right">{{ jsonData.amountWithCurrency }}</v-col>
+          <v-col cols="6" class="neon-text"><b>결제금액:</b></v-col>
+          <v-col cols="6" class="text-right neon-text">{{ jsonData.amountWithCurrency }}</v-col>
         </v-row>
         <v-row>
-          <v-col cols="6"><b>결제 시간:</b></v-col>
-          <v-col cols="6" class="text-right">{{ formattedApprovedAt }}</v-col>
+          <v-col cols="6" class="neon-text"><b>결제 시간:</b></v-col>
+          <v-col cols="6" class="text-right neon-text">{{ formattedApprovedAt }}</v-col>
         </v-row>
         <v-row>
-          <v-col cols="6"><b>주문 항목:</b></v-col>
-          <v-col cols="6" class="text-right">{{ jsonData.orderName }}</v-col>
+          <v-col cols="6" class="neon-text"><b>주문 항목:</b></v-col>
+          <v-col cols="6" class="text-right neon-text">{{ jsonData.orderName }}</v-col>
         </v-row>
         <v-row>
-          <v-col cols="6"><b>결제 방법:</b></v-col>
-          <v-col cols="6" class="text-right">{{ jsonData.method }}</v-col>
+          <v-col cols="6" class="neon-text"><b>결제 방법:</b></v-col>
+          <v-col cols="6" class="text-right neon-text">{{ jsonData.method }}</v-col>
         </v-row>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" @click="redirectToDocs">연동 문서</v-btn>
-        <v-btn color="secondary" @click="redirectToSupport">실시간 문의</v-btn>
+        <v-btn class="neon-button blue-button" @click="redirectToDocs">연동 문서</v-btn>
+        <v-btn class="neon-button" @click="redirectToSupport">실시간 문의</v-btn>
         <!-- 홈으로 돌아가는 확인 버튼 추가 -->
-        <v-btn color="success" @click="redirectToHome">확인</v-btn>
+        <v-btn class="neon-button green-button" @click="redirectToHome">확인</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -83,7 +83,6 @@ async function confirmPayment() {
       return;
     }
 
-    // const orderInfoId = orderStore.getOrderInfoId();  // Pinia store에서 orderInfoId 가져오기
     const orderInfoId = localStorage.getItem("oid")
     if (!orderInfoId) {
       console.error("Order Info ID is missing");
@@ -99,25 +98,24 @@ async function confirmPayment() {
       orderInfoId
     };
 
-    console.log("Request Form:", requestForm);  // 여기서 데이터를 제대로 받고 있는지 로그로 확인
+    console.log("Request Form:", requestForm);
 
     const { success, data, message } = await paymentStore.requestProcessPayments(requestForm);
 
     if (success) {
-      // 응답 받은 데이터(jsonData)에 URL 파라미터로 받은 값을 추가.
       confirmed.value = true;
-      jsonData.value = { ...data, amount: route.query.amount }; // amount를 포함하여 jsonData에 추가
+      jsonData.value = { ...data, amount: route.query.amount };
 
       localStorage.removeItem("oid");
     } else {
-      console.error("Payment confirmation failed:", message);  // 오류 발생 시
+      console.error("Payment confirmation failed:", message);
       router.push(`/payment/fail?message=${message}`);
     }
   } catch (error) {
     console.error("Error confirming payment:", error);
     router.push("/payment/fail");
   } finally {
-    isProcessing.value = false;  // 로딩 종료
+    isProcessing.value = false;
   }
 }
 
@@ -129,12 +127,60 @@ function redirectToSupport() {
   window.location.href = "https://discord.gg/A4fRFXQhRu";
 }
 
-// 홈으로 돌아가는 함수
 function redirectToHome() {
-  router.push('/'); // 홈 페이지로 리디렉션
+  router.push('/');
 }
 
 onMounted(() => {
   confirmPayment();
 });
 </script>
+
+<style scoped>
+.dark-background {
+  background-color: black;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.neon-card {
+  background-color: rgba(20, 20, 20, 0.9);
+  border: 2px solid rgba(255, 0, 255, 0.5);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+  border-radius: 12px;
+}
+
+.neon-card-title {
+  color: white;
+  text-align: center;
+  font-size: 1.8rem;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.neon-text {
+  color: white;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.neon-button {
+  background-color: rgba(255, 0, 255, 0.5);
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.neon-button:hover {
+  background-color: rgba(255, 0, 255, 0.7);
+  transform: scale(1.05);
+}
+
+.blue-button {
+  background-color: rgba(0, 122, 255, 0.8) !important;
+  box-shadow: 0 0 10px rgba(0, 122, 255, 0.8);
+}
+
+.green-button {
+  background-color: rgba(0, 200, 83, 0.8) !important;
+  box-shadow: 0 0 10px rgba(0, 200, 83, 0.8);
+}
+</style>

@@ -1,36 +1,39 @@
 <template>
-  <v-container>
+  <v-container class="dark-background pa-4">
+    <h2 class="centered-title">Order Confirmation</h2>
     <v-row>
       <v-col cols="12">
-        <v-card>
-          <v-card-title>Order Confirmation</v-card-title>
+        <v-card class="neon-card">
+          <v-card-title class="neon-card-title">Order Summary</v-card-title>
           <v-card-text>
-            <!-- 상품 목록 -->
-            <v-table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total</th>
+            <v-data-table
+              dense
+              class="neon-table"
+              hide-default-footer
+            >
+              <template v-slot:body>
+                <tr class="neon-header">
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">Total</th>
+                  </tr>
+                <tr v-for="item in items" :key="item.id" class="neon-row">
+                  <td class="neon-text">{{ item.title }}</td>
+                  <td class="neon-text">{{ item.price }}</td>
+                  <td class="neon-text">{{ item.quantity }}</td>
+                  <td class="neon-text">{{ item.price * item.quantity }}</td>
                 </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in items" :key="item.id">
-                  <td>{{ item.title }}</td>
-                  <td>{{ item.price }}</td>
-                  <td>{{ item.quantity }}</td>
-                  <td>{{ item.price * item.quantity }}</td>
-                </tr>
-              </tbody>
-            </v-table>
+              </template>
+            </v-data-table>
 
-            <v-divider class="my-4"></v-divider>
+            <v-divider class="my-4" />
 
             <!-- 결제 UI -->
-            <div id="payment-method"></div>
+            <div id="payment-method" class="neon-payment"></div>
+
             <!-- 이용약관 UI -->
-            <div id="agreement"></div>
+            <div id="agreement" class="neon-agreement"></div>
 
             <!-- 결제 로딩 상태 -->
             <v-progress-circular
@@ -43,7 +46,7 @@
             ></v-progress-circular>
 
             <!-- 결제 실패 메시지 -->
-            <v-alert v-if="errorMessage" type="error">
+            <v-alert v-if="errorMessage" type="error" class="neon-alert">
               {{ errorMessage }}
             </v-alert>
           </v-card-text>
@@ -51,10 +54,14 @@
       </v-col>
     </v-row>
 
-    <!-- 결제하기 버튼을 오른쪽 하단에 배치 -->
+    <!-- 결제하기 버튼 -->
     <v-row justify="end">
       <v-col cols="auto">
-        <v-btn :disabled="isProcessing" @click="requestPayment" class="button" style="margin-top: 30px">
+        <v-btn 
+          :disabled="isProcessing" 
+          @click="requestPayment" 
+          class="neon-button blue-button"
+          style="margin-top: 30px">
           결제하기
         </v-btn>
       </v-col>
@@ -69,7 +76,7 @@ import { useRuntimeConfig } from "nuxt/app";
 import { nanoid } from "nanoid";
 import { useRoute, useRouter } from "vue-router";
 import { useAccountStore } from "~/account/stores/accountStore";
-import { usePaymentStore } from "~/payments/stores/paymentsStore"
+import { usePaymentStore } from "~/payments/stores/paymentsStore";
 
 // 변수 선언
 const config = useRuntimeConfig();
@@ -171,5 +178,59 @@ const generateOrderName = (items) => {
 </script>
 
 <style scoped>
-/* 필요한 스타일 추가 */
+.dark-background {
+  background-color: black;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.centered-title {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.neon-card {
+  background-color: rgba(20, 20, 20, 0.8);
+  border: 2px solid rgba(255, 0, 255, 0.5);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+}
+
+.neon-table {
+  background-color: rgba(30, 30, 30, 0.9);
+  border: 1px solid rgba(255, 0, 255, 0.5);
+  border-radius: 8px;
+}
+
+.neon-table th,
+.neon-table td {
+  color: white;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.neon-header th {
+  background-color: rgba(50, 50, 50, 0.9);
+  color: white;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.neon-text {
+  color: white;
+}
+
+.neon-button {
+  background-color: rgba(255, 0, 255, 0.5);
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.neon-button:hover {
+  background-color: rgba(255, 0, 255, 0.7);
+  transform: scale(1.05);
+}
+
 </style>
