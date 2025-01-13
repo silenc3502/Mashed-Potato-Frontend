@@ -26,18 +26,6 @@
                 </v-btn>
             </template>
 
-            <!-- 드롭다운 리스트 -->
-            <v-list>
-                <v-list-item @click="filterVehicles('승용차 및 SUV')">
-                    <v-list-item-title>승용차 및 SUV</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="filterVehicles('상용차 및 픽업트럭')">
-                    <v-list-item-title>상용차 및 픽업트럭</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="filterVehicles('버스 및 대형')">
-                    <v-list-item-title>버스 및 대형</v-list-item-title>
-                </v-list-item>
-            </v-list>
         </v-menu>
 
        <!-- 리뷰게시판 버튼 -->
