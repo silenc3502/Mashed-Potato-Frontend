@@ -17,29 +17,30 @@
 
     <!-- 기능 카드 섹션 -->
     <v-row justify="center" class="mt-6">
-      <v-slide-group
-        show-arrows
-        class="custom-slide-group"
-        v-model="currentSlide"
-      >
-        <v-slide-item
-          v-for="n in 10"
-          :key="n"
-        >
-          <v-card class="mx-2" max-width="150">
-            <v-img
-              src="/assets/images/fixed/cyberTruck_test.jpeg"
-              height="100"
-            ></v-img>
-            <v-card-title class="text-h6">사이버 트럭</v-card-title>
-            <v-card-subtitle>Tesla</v-card-subtitle>
-            <v-card-actions>
-              <v-btn text>자세히 보기</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-slide-item>
-      </v-slide-group>
-    </v-row>
+  <v-slide-group
+    show-arrows
+    class="custom-slide-group"
+    v-model="currentSlide"
+  >
+    <v-slide-item
+      v-for="(car, index) in carList"
+      :key="index"
+    >
+      <v-card class="mx-2" max-width="150">
+        <v-img
+          :src="getCarImageUrl(car.image) || '/assets/images/fixed/cyberTruck_test.jpeg'"
+          height="100"
+        ></v-img>
+        <v-card-title class="text-h6">{{ car.title }}</v-card-title>
+        <v-card-subtitle>{{ car.category }}</v-card-subtitle>
+        <v-card-actions>
+          <v-btn text @click="goToCarReadPage(car.id)">자세히 보기</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-slide-item>
+  </v-slide-group>
+</v-row>
+
 
     <!-- Footer 섹션 -->
     <v-row>
@@ -55,10 +56,56 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue'
+import { useCarStore } from '../../car/stores/carStore'
+import { useRouter } from 'vue-router'
 
-// 슬라이드 상태 관리
 const currentSlide = ref(0);
+const carStore = useCarStore()
+const carList = computed(() => carStore.carList);
+
+
+// 라우터 설정
+const router = useRouter()
+
+// 상품 상세 페이지로 이동하는 함수
+const goToCarReadPage = (id) => {
+  router.push({
+    path: '/car/:id',
+    name: 'CarRead',
+    component: () => import('@/car/pages/read/Read.vue'),
+    params: { id },
+  })
+}
+
+// 상품 이미지 URL을 반환하는 함수
+const images = import.meta.glob('@/assets/images/uploadImages/*', { eager: true });
+for (const [key, value] of Object.entries(images)) {
+    console.log(`Key: ${key}`);
+    console.log(`Value:`, value);
+}
+
+const getCarImageUrl = (imageName) => {
+    console.log(`imageName: ${imageName}`)
+    console.log(`images[\`@/assets/images/uploadImages/${imageName}\`]`)
+    console.log(`images: ${images}`)
+    const imagePathKey = `/assets/images/uploadImages/${imageName}`
+    console.log(`imagePathKey: ${imagePathKey}`)
+    const imagePath = images[imagePathKey];
+    //console.log(`imagePath: ${imagePath.default}`)
+
+    if (imagePath) {
+        return imagePath.default;
+    }
+    return '/assets/images/default-image.jpg';
+}
+
+
+// 컴포넌트 마운트 시 상품 목록 요청
+onMounted(() => {
+  carStore.requestCarList(1,20)
+})
+
 </script>
 
 <style scoped>
