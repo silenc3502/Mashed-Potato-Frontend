@@ -20,7 +20,10 @@ export default defineNuxtConfig({
   ],
 
   build: {
-    transpile: ['vuetify']
+    transpile: [
+      'vuetify',
+      'vue-toastification'
+    ]
   },
 
   vite: {

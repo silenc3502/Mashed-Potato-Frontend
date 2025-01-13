@@ -56,13 +56,13 @@
         <template v-if="!kakaoAuthentication.isAuthenticated">
             <v-btn text @click="signIn" class="btn-text">
                 <v-icon left>mdi-login</v-icon>
-                로그인
+                <span>로그인</span>
             </v-btn>
         </template>
         <template v-else>
             <v-btn text @click="signOut" class="btn-text">
                 <v-icon left>mdi-logout</v-icon>
-                로그아웃
+                <span>로그아웃</span>
             </v-btn>
         </template>
     </v-app-bar>
@@ -106,19 +106,28 @@ const signIn = () => {
 };
 
 const signOut = () => {
-    console.log('로그아웃 클릭');
-    const userToken = localStorage.getItem('userToken');
+  console.log('로그아웃 클릭')
+  const userToken = localStorage.getItem("userToken")
 
-    if (userToken) {
-        kakaoAuthentication.requestLogout(userToken);
-    } else {
-        console.log('userToken이 없습니다');
-    }
+  if (userToken != null) {
+    kakaoAuthentication.requestLogout(userToken)
+  } else {
+    console.log('userToken이 없습니다')
+  }
 
-    localStorage.removeItem('userToken');
-    kakaoAuthentication.isAuthenticated = false;
-    router.push('/');
-};
+  localStorage.removeItem("userToken")
+  kakaoAuthentication.isAuthenticated = false
+  router.push('/')
+}
+
+onMounted(async () => {
+  const userToken = localStorage.getItem('userToken');
+  
+  if (userToken) {
+    const isValid = await kakaoAuthentication.requestValidationUserToken(userToken)
+    kakaoAuthentication.isAuthenticated = isValid;
+  }
+});
 </script>
 
 <style scoped>
